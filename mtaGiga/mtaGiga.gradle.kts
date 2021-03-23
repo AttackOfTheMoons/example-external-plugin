@@ -25,20 +25,19 @@ import ProjectVersions.openosrsVersion
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-version = "0.0.8"
-
-project.extra["PluginName"] = "Achievement Discord Notifier"
-project.extra["PluginDescription"] = "Notify discord when you do something awesome"
-project.extra["PluginProvider"] = "tha23rd"
+version = "0.0.1"
+project.extra["PluginName"] = "Mage Training Arena Advanced"
+project.extra["PluginDescription"] = "almost cheating"
+project.extra["PluginProvider"] = "AttackOfTheMoons"
 
 dependencies {
-	annotationProcessor(Libraries.lombok)
-	annotationProcessor(Libraries.slf4j)
-	annotationProcessor(Libraries.pf4j)
+    annotationProcessor(Libraries.lombok)
+    annotationProcessor(Libraries.slf4j)
+    annotationProcessor(Libraries.pf4j)
 
-	compileOnly(Libraries.lombok)
-	compileOnly(Libraries.slf4j)
-	compileOnly(Libraries.pf4j)
+    compileOnly(Libraries.lombok)
+    compileOnly(Libraries.slf4j)
+    compileOnly(Libraries.pf4j)
     compileOnly(Libraries.guice)
     compileOnly(Libraries.javax)
 	compileOnly(Libraries.okhttp)

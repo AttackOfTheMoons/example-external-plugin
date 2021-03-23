@@ -1,5 +1,7 @@
+package net.AttackOfTheMoons.mtaGiga;
+
 /*
- * Copyright (c) 2019 Owain van Brakel <https:github.com/Owain94>
+ * Copyright (c) 2018, Jasper Ketelaar <Jasper0781@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -23,17 +25,38 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "external plugins example"
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import javax.inject.Inject;
+import net.runelite.client.ui.FontManager;
+import net.runelite.client.ui.overlay.Overlay;
+import net.runelite.client.ui.overlay.OverlayLayer;
+import net.runelite.client.ui.overlay.OverlayPosition;
 
-include(":mtaGiga")
+public class MTASceneOverlay extends Overlay
+{
+	private final MTAAdvancedPlugin plugin;
 
-for (project in rootProject.children) {
-    project.apply {
-        projectDir = file(name)
-        buildFileName = "$name.gradle.kts"
+	@Inject
+	public MTASceneOverlay(MTAAdvancedPlugin plugin)
+	{
+		this.plugin = plugin;
+		setPosition(OverlayPosition.DYNAMIC);
+		setLayer(OverlayLayer.ABOVE_SCENE);
+	}
 
-        require(projectDir.isDirectory) { "Project '${project.path} must have a $projectDir directory" }
-        require(buildFile.isFile) { "Project '${project.path} must have a $buildFile build script" }
-    }
+	@Override
+	public Dimension render(Graphics2D graphics)
+	{
+		for (MTARoom room : plugin.getRooms())
+		{
+			if (room.inside())
+			{
+				graphics.setFont(FontManager.getRunescapeFont());
+				room.under(graphics);
+			}
+		}
+
+		return null;
+	}
 }
-include("mtaPlus")

@@ -1,5 +1,7 @@
+package net.AttackOfTheMoons.mtaGiga.alchemy;
+
 /*
- * Copyright (c) 2019 Owain van Brakel <https:github.com/Owain94>
+ * Copyright (c) 2018, Jasper Ketelaar <Jasper0781@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -23,17 +25,41 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "external plugins example"
+import lombok.Getter;
+import net.runelite.api.ItemID;
 
-include(":mtaGiga")
+public enum AlchemyItem
+{
+	LEATHER_BOOTS("Leather Boots", ItemID.LEATHER_BOOTS_6893),
+	ADAMANT_KITESHIELD("Adamant Kiteshield", ItemID.ADAMANT_KITESHIELD_6894),
+	ADAMANT_MED_HELM("Helm", ItemID.ADAMANT_MED_HELM_6895),
+	EMERALD("Emerald", ItemID.EMERALD_6896),
+	RUNE_LONGSWORD("Rune Longsword", ItemID.RUNE_LONGSWORD_6897),
+	EMPTY("", -1),
+	POSSIBLY_EMPTY("", ItemID.CAKE_OF_GUIDANCE),
+	UNKNOWN("Unknown", ItemID.CAKE_OF_GUIDANCE);
 
-for (project in rootProject.children) {
-    project.apply {
-        projectDir = file(name)
-        buildFileName = "$name.gradle.kts"
+	@Getter
+	private final int id;
+	@Getter
+	private final String name;
 
-        require(projectDir.isDirectory) { "Project '${project.path} must have a $projectDir directory" }
-        require(buildFile.isFile) { "Project '${project.path} must have a $buildFile build script" }
-    }
+	AlchemyItem(String name, int id)
+	{
+		this.id = id;
+		this.name = name;
+	}
+
+	public static AlchemyItem find(String item)
+	{
+		for (AlchemyItem alchemyItem : values())
+		{
+			if (item.toLowerCase().contains(alchemyItem.name.toLowerCase()))
+			{
+				return alchemyItem;
+			}
+		}
+		return null;
+	}
 }
-include("mtaPlus")
+

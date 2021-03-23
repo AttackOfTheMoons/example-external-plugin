@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Owain van Brakel <https:github.com/Owain94>
+ * Copyright (c) 2018, Jasper Ketelaar <Jasper0781@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,18 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package net.AttackOfTheMoons.mtaGiga;
 
-rootProject.name = "external plugins example"
+import java.awt.Graphics2D;
+import javax.inject.Inject;
+import lombok.AccessLevel;
+import lombok.Getter;
 
-include(":mtaGiga")
+public abstract class MTARoom
+{
+	@Getter(AccessLevel.PROTECTED)
+	protected final MTAAdvancedConfig config;
 
-for (project in rootProject.children) {
-    project.apply {
-        projectDir = file(name)
-        buildFileName = "$name.gradle.kts"
+	@Inject
+	protected MTARoom(MTAAdvancedConfig config)
+	{
+		this.config = config;
+	}
 
-        require(projectDir.isDirectory) { "Project '${project.path} must have a $projectDir directory" }
-        require(buildFile.isFile) { "Project '${project.path} must have a $buildFile build script" }
-    }
+	public abstract boolean inside();
+
+	public void under(Graphics2D graphics2D)
+	{
+	}
+
+	public void over(Graphics2D graphics2D)
+	{
+	}
 }
-include("mtaPlus")

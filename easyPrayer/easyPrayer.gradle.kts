@@ -25,20 +25,20 @@ import ProjectVersions.openosrsVersion
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-version = "0.0.8"
+version = "0.0.1"
 
-project.extra["PluginName"] = "Achievement Discord Notifier"
-project.extra["PluginDescription"] = "Notify discord when you do something awesome"
-project.extra["PluginProvider"] = "tha23rd"
+project.extra["PluginName"] = "One Tick Prayer"
+project.extra["PluginDescription"] = "Enables you to spamclick prayers to one tick flick them."
+project.extra["PluginProvider"] = "Dennys"
 
 dependencies {
-	annotationProcessor(Libraries.lombok)
-	annotationProcessor(Libraries.slf4j)
-	annotationProcessor(Libraries.pf4j)
+    annotationProcessor(Libraries.lombok)
+    annotationProcessor(Libraries.slf4j)
+    annotationProcessor(Libraries.pf4j)
 
-	compileOnly(Libraries.lombok)
-	compileOnly(Libraries.slf4j)
-	compileOnly(Libraries.pf4j)
+    compileOnly(Libraries.lombok)
+    compileOnly(Libraries.slf4j)
+    compileOnly(Libraries.pf4j)
     compileOnly(Libraries.guice)
     compileOnly(Libraries.javax)
 	compileOnly(Libraries.okhttp)

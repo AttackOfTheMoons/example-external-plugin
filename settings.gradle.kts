@@ -25,7 +25,7 @@
 
 rootProject.name = "external plugins example"
 
-include(":discordNotifier")
+include(":easyPrayer")
 
 for (project in rootProject.children) {
     project.apply {
